@@ -8,9 +8,15 @@ Version: 0.0.1
 Author URI:
 */
 
-require_once __DIR__ . '/inc/class-loan-calculator.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-$loan_calculator = new \Loan_Calculator\Loan_Calculator();
-$loan_calculator->init();
-	
+use Loan_Calculator\Request;
+use Loan_Calculator\Shortcode;
+use Loan_Calculator\Calculator;
 
+$calculator = new Calculator();
+$request = new Request( $calculator );
+$request->init();
+
+$shortcode = new Shortcode();
+$shortcode->init();

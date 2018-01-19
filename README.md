@@ -1,7 +1,7 @@
 # WordPress Loan Calculator Plugin
 
 ###Shortcode
-`[loan_calculator]`
+- `[loan_calculator]`
 
 - you can load the shortcode with pre-filled data into the calculator as follows `[loan_calculator loan_amount=100,000 term_length="30 Years" interest=6%]`
 

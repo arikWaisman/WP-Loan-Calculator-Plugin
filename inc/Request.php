@@ -65,7 +65,7 @@ class Request extends Base
 		$term_length = $input_values['term_length'];
 		$interest    = $input_values['interest'];
 		
-		$monthly_payment = $calculator_obj->calculate_monthly_payment($loan_amount, $term_length, $interest);
+		$monthly_payment = $this->calculator_obj->calculate_monthly_payment($loan_amount, $term_length, $interest);
 		
 		return wp_send_json( $monthly_payment, 200 );
 		

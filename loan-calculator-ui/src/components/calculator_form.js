@@ -3,38 +3,36 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { getCalculation } from '../actions';
 
+const renderInputField = (field) => {
+
+    const { meta: { touched, error }, serverErrors } = field;
+
+    const className = `form-group ${ touched && error || !!serverErrors && serverErrors.hasOwnProperty(field.input.name) ? 'has-error' : '' }`;
+
+    let outputServerError = null;
+
+    if( !!serverErrors && serverErrors.hasOwnProperty(field.input.name) ){
+        outputServerError = serverErrors[field.input.name];
+    }
+
+    return(
+        <div className={className}>
+            <label>{field.label}</label>
+            <input
+                type={field.type}
+                placeholder={field.label}
+                className="form-control"
+                {...field.input}
+            />
+            <div className="input-feedback">
+                <div>{ touched ? error : '' }</div>
+                <div>{outputServerError}</div>
+            </div>
+        </div>
+    );
+};
+
 class CalculatorForm extends Component {
-
-    renderInputField(field){
-
-		const { meta: { touched, error } } = field;
-
-        const {calculation} = this.props;
-
-        const className = `form-group ${ touched && error || !!calculation.errors  && calculation.errors.hasOwnProperty(field.input.name) ? 'has-error' : '' }`;
-
-        let serverError = null;
-
-        if( !!calculation.errors && calculation.errors.hasOwnProperty(field.input.name) ){
-           serverError = calculation.errors[field.input.name];
-        }
-
-		return(
-			<div className={className}>
-				<label>{field.label}</label>
-				<input
-					type={field.type}
-                    placeholder={field.label}
-                    className="form-control"
-					{...field.input}
-				/>
-				<div className="input-feedback">
-					<div>{ touched ? error : '' }</div>
-                    <div>{serverError}</div>
-                </div>
-			</div>
-		);
-	}
 
     onSubmit(values) {
             this.props.getCalculation(values);
@@ -60,19 +58,22 @@ class CalculatorForm extends Component {
                         label="Loan Amount"
                         type="text"
                         name="loan_amount"
-                        component={this.renderInputField.bind(this)}
+                        component={renderInputField}
+                        serverErrors={calculation.errors}
                     />
                     <Field
                         label="Term Length In Years"
                         type="text"
                         name="term_length"
-                        component={this.renderInputField.bind(this)}
+                        component={renderInputField}
+                        serverErrors={calculation.errors}
                     />
                     <Field
                         label="APR % / Interest"
                         type="text"
                         name="interest"
-                        component={this.renderInputField.bind(this)}
+                        component={renderInputField}
+                        serverErrors={calculation.errors}
                     />
 
                     { !!calculation.result && <div className="form-group result">Monthly Payment: <strong>${calculation.result}</strong></div>}

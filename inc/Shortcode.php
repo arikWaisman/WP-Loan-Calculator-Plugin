@@ -28,7 +28,7 @@ class Shortcode extends Base {
 		
 		wp_localize_script( 'loan_calculator_script', 'initialFormSettings', $atts );
 		
-		return '<div id="loan-calc-hook" class="loan-calce"></div>';
+		return '<div id="loan-calc-hook" class="loan-calc"></div>';
 		
 	}
 	

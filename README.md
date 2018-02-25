@@ -3,7 +3,7 @@
 ### Shortcode
 `[loan_calculator]`
 
-- you can load the shortcode with pre-filled data into the calculator as follows `[loan_calculator loan_amount=100,000 term_length="30 Years" interest=6%]`
+- you can load the shortcode with pre-filled data/settings into the calculator as follows `[loan_calculator title="Loan Calculator"" loan_amount=100,000 term_length="30 Years" interest=6%]`
 
 
 ### Composer

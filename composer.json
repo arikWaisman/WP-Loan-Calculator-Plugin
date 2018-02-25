@@ -1,4 +1,17 @@
 {
+    "name": "Loan Calculator",
+    "description": "Loan Calculator Display",
+    "type": "wordpress-plugin",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Arik Waisman",
+            "email": "arik.waisman@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "htmlburger/carbon-fields": "^2.1"
+    },
     "autoload": {
         "psr-4": {
             "Loan_Calculator\\": "inc/"

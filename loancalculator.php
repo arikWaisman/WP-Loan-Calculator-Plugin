@@ -10,9 +10,13 @@ Author URI:
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+use Loan_Calculator\Settings;
 use Loan_Calculator\Request;
 use Loan_Calculator\Shortcode;
 use Loan_Calculator\Calculator;
+
+$settings = new Settings();
+$settings->init();
 
 $calculator = new Calculator();
 $request = new Request( $calculator );

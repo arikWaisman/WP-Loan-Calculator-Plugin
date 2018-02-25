@@ -28,7 +28,7 @@ class Shortcode extends Base {
 		
 		wp_localize_script( 'loan_calculator_script', 'initialFormSettings', $atts );
 		
-		return '<div id="loan-calc-hook" class="loan-calc"></div>';
+		return '<div id="loan-calc-hook" class="loan-calce"></div>';
 		
 	}
 	
@@ -36,12 +36,15 @@ class Shortcode extends Base {
 	public function load_shortcode_script() {
 		global $post;
 		
+		wp_register_script( 'loan_calculator_script', plugin_dir_url( __FILE__ ) . '../loan-calculator-ui/dist/bundle.js', array(), '1.0', true );
+		
+		//render ajax url so react api can use it
+		wp_localize_script( 'loan_calculator_script', 'loanCalcRestNamespace', array( 'url' => get_rest_url( null, 'loancalculator/v1' ) ) );
+		
+		
 		if ( has_shortcode( $post->post_content, 'loan_calculator' ) ) {
 			
-			wp_enqueue_script( 'loan_calculator_script', plugin_dir_url( __FILE__ ) . '../loan-calculator-ui/dist/bundle.js', array(), '1.0', true );
-			
-			//render ajax url so react api can use it
-			wp_localize_script( 'loan_calculator_script', 'loanCalcRestNamespace', array( 'url' => get_rest_url( null, 'loancalculator/v1' ) ) );
+			wp_enqueue_script('loan_calculator_script');
 			
 			$load_bootstrap = carbon_get_theme_option('load_bootstrap');
 			

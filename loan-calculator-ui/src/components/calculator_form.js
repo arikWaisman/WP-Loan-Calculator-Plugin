@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { getCalculation } from '../actions';
 
 const renderInputField = (field) => {
-
     const { meta: { touched, error }, serverErrors } = field;
 
-    const className = `form-group ${ touched && error || !!serverErrors && serverErrors.hasOwnProperty(field.input.name) ? 'has-error' : '' }`;
+    const className = `form-group ${field.input.name.replace('_', '-')}-wrap ${ touched && error || !!serverErrors && serverErrors.hasOwnProperty(field.input.name) ? 'has-error' : '' }`;
 
     let outputServerError = null;
 
@@ -16,7 +15,7 @@ const renderInputField = (field) => {
     }
 
     return(
-        <div className={className}>
+        <div className={className} id={field.input.name}>
             <label>{field.label}</label>
             <input
                 type={field.type}
@@ -40,9 +39,9 @@ class CalculatorForm extends Component {
 
     componentDidMount(){
         this.props.initialize({
-            loan_amount: initialFormValues.loan_amount,
-            term_length: initialFormValues.term_length,
-            interest: initialFormValues.interest
+            loan_amount: initialFormSettings.loan_amount,
+            term_length: initialFormSettings.term_length,
+            interest: initialFormSettings.interest
         });
 
         this.props.handleSubmit(this.onSubmit.bind(this));

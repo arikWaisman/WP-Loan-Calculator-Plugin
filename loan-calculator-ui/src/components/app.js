@@ -5,7 +5,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-         <h2>Loan Calculator</h2>
+          {!!initialFormSettings.title && <h2>{initialFormSettings.title}</h2>}
          <CalculatorForm />
       </div>
     );

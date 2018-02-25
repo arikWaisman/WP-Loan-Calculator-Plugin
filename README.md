@@ -4,7 +4,7 @@
 `[loan_calculator]`
 
 - you can load the shortcode with pre-filled data/settings into the calculator as follows `[loan_calculator title="Loan Calculator"" loan_amount=100,000 term_length="30 Years" interest=6%]`
-
+- under `settings -> loan calculator options` there is a field to load bootstrap
 
 ### Composer
 - Composer is used to autoload the plugins classes. If a new class is added make sure the file name starts with a captial and matches the class name

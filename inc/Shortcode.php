@@ -6,6 +6,8 @@ use Loan_Calculator\Base;
 
 class Shortcode extends Base {
 	
+	public $initial_values = [];
+	
 	public function attach_hooks() {
 		
 		add_shortcode( 'loan_calculator', array( $this, 'render_html_hook' ) );
@@ -14,6 +16,8 @@ class Shortcode extends Base {
 	}
 	
 	public function render_html_hook( $atts ) {
+		
+		$this->initial_values = $atts;
 		
 		$atts = shortcode_atts(
 			array(
@@ -26,7 +30,6 @@ class Shortcode extends Base {
 			'loan_calculator'
 		);
 		
-		wp_localize_script( 'loan_calculator_script', 'initialFormSettings', $atts );
 		
 		return '<div id="loan-calc-hook" class="loan-calc"></div>';
 		
@@ -40,6 +43,9 @@ class Shortcode extends Base {
 		
 		//render ajax url so react api can use it
 		wp_localize_script( 'loan_calculator_script', 'loanCalcRestNamespace', array( 'url' => get_rest_url( null, 'loancalculator/v1' ) ) );
+		
+		//localize shortcode initial values so react can use them
+		wp_localize_script( 'loan_calculator_script', 'initialFormSettings', $this->initial_values );
 		
 		
 		if ( has_shortcode( $post->post_content, 'loan_calculator' ) ) {

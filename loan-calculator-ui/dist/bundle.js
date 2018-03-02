@@ -27147,7 +27147,7 @@ var CalculatorForm = function (_Component) {
                         _react2.default.createElement(
                             'button',
                             { type: 'submit', className: 'btn btn-primary' },
-                            'Submit'
+                            'Calculate'
                         )
                     )
                 )

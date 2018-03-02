@@ -78,7 +78,7 @@ class CalculatorForm extends Component {
                     { !!calculation.result && <div className="form-group result">Monthly Payment: <strong>${calculation.result}</strong></div>}
 
                     <div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">Calculate</button>
                     </div>
                 </form>
             </div>

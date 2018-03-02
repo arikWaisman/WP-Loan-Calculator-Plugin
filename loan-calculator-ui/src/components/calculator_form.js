@@ -22,6 +22,7 @@ const renderInputField = (field) => {
                 placeholder={field.label}
                 className="form-control"
                 {...field.input}
+                autoFocus={!!field.autoFocus && field.autoFocus}
             />
             <div className="input-feedback">
                 <div>{ touched ? error : '' }</div>
@@ -59,6 +60,7 @@ class CalculatorForm extends Component {
                         name="loan_amount"
                         component={renderInputField}
                         serverErrors={calculation.errors}
+                        autoFocus={true}
                     />
                     <Field
                         label="Term Length In Years"

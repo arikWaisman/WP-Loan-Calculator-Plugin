@@ -27052,7 +27052,9 @@ var renderInputField = function renderInputField(field) {
             type: field.type,
             placeholder: field.label,
             className: 'form-control'
-        }, field.input)),
+        }, field.input, {
+            autoFocus: !!field.autoFocus && field.autoFocus
+        })),
         _react2.default.createElement(
             'div',
             { className: 'input-feedback' },
@@ -27114,7 +27116,8 @@ var CalculatorForm = function (_Component) {
                         type: 'text',
                         name: 'loan_amount',
                         component: renderInputField,
-                        serverErrors: calculation.errors
+                        serverErrors: calculation.errors,
+                        autoFocus: true
                     }),
                     _react2.default.createElement(_reduxForm.Field, {
                         label: 'Term Length In Years',

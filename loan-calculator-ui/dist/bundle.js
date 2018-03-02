@@ -27075,10 +27075,15 @@ var renderInputField = function renderInputField(field) {
 var CalculatorForm = function (_Component) {
     _inherits(CalculatorForm, _Component);
 
-    function CalculatorForm() {
+    function CalculatorForm(props) {
         _classCallCheck(this, CalculatorForm);
 
-        return _possibleConstructorReturn(this, (CalculatorForm.__proto__ || Object.getPrototypeOf(CalculatorForm)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (CalculatorForm.__proto__ || Object.getPrototypeOf(CalculatorForm)).call(this, props));
+
+        _this.state = {
+            whichCalculation: 'monthlyPayment'
+        };
+        return _this;
     }
 
     _createClass(CalculatorForm, [{
@@ -27161,7 +27166,8 @@ var CalculatorForm = function (_Component) {
     return CalculatorForm;
 }(_react.Component);
 
-function validate(values) {
+function validate(values, props) {
+    console.log('validate props', props);
 
     var errors = {};
 

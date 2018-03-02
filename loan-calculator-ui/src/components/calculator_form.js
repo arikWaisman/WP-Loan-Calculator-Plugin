@@ -34,8 +34,16 @@ const renderInputField = (field) => {
 
 class CalculatorForm extends Component {
 
+    constructor(props){
+        super(props);
+
+        this.state = {
+            whichCalculation: 'monthlyPayment'
+        }
+    }
+
     onSubmit(values) {
-            this.props.getCalculation(values);
+        this.props.getCalculation(values);
     }
 
     componentDidMount(){
@@ -89,24 +97,25 @@ class CalculatorForm extends Component {
 
 }
 
-function validate(values){
+function validate(values, props){
+    console.log('validate props', props);
 
-	const errors = {};
+    const errors = {};
 
-	//validate inputs
-	if( ! values.loan_amount ){
-		errors.loan_amount = "Enter the loan amount";
-	}
+    //validate inputs
+    if( ! values.loan_amount ){
+        errors.loan_amount = "Enter the loan amount";
+    }
 
-	if( ! values.term_length ){
-		errors.term_length = "Enter the length of the loan";
-	}
+    if( ! values.term_length ){
+        errors.term_length = "Enter the length of the loan";
+    }
 
-	if( ! values.interest ){
-		errors.interest = "Enter the interest rate";
-	}
+    if( ! values.interest ){
+        errors.interest = "Enter the interest rate";
+    }
 
-	return errors;
+    return errors;
 
 }
 
@@ -117,8 +126,8 @@ const mapStateToProps = (state) => {
 };
 
 export default reduxForm({
-	validate,
-	form: 'LoanCalculatorForm'
+    validate,
+    form: 'LoanCalculatorForm'
 })(
-	connect(mapStateToProps, {getCalculation})(CalculatorForm)
+    connect(mapStateToProps, {getCalculation})(CalculatorForm)
 );

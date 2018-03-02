@@ -34,14 +34,6 @@ const renderInputField = (field) => {
 
 class CalculatorForm extends Component {
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            whichCalculation: 'monthlyPayment'
-        }
-    }
-
     onSubmit(values) {
         this.props.getCalculation(values);
     }
@@ -57,6 +49,7 @@ class CalculatorForm extends Component {
     }
 
     render(){
+
         const { handleSubmit, calculation } = this.props;
 
         return(
@@ -97,8 +90,7 @@ class CalculatorForm extends Component {
 
 }
 
-function validate(values, props){
-    console.log('validate props', props);
+function validate( values ){
 
     const errors = {};
 

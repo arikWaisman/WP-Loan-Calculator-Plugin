@@ -20,8 +20,8 @@ class Shortcode extends Base {
 		
 	}
 	
-	public function add_shortcode_scripts()
-	{
+	public function add_shortcode_scripts() {
+		
 		if( !$this->addScript ) {
 			return false;
 		}
